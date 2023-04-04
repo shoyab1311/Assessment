@@ -1,0 +1,22 @@
+<?php
+$enable = $block->checkEnable();
+$title = $block->getTitle();
+$des = $block->getDescription();
+$listMoneyDonation = array_values(json_decode($block->getListMoney(), true));
+$image = $block->getImage();
+?>
+<?php if($enable == '1'): ?>
+<div class="block-donation">
+    <h2><b><?= $title; ?></b></h2>
+    <div class="block-donation-content">
+        <input class="check_donation" type="checkbox" value="1" name="check_donation">
+        <img src="pub/media/settings/<?= $image; ?>">
+        <div class="description"><?= $des; ?></div>
+        <select name="money" id="money" class="money">
+            <?php for($x = 0; $x < count($listMoneyDonation); $x++): ?>
+                <option value="<?= $listMoneyDonation[$x]['group']; ?>">$<?= $listMoneyDonation[$x]['group']; ?></option>
+            <?php endfor;?>
+        </select>
+    </div>
+</div>
+<?php endif; ?>
